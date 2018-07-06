@@ -420,6 +420,9 @@ GNU_HOST_NAME := $(shell support/gnuconfig/config.guess)
 PACKAGES :=
 PACKAGES_ALL :=
 
+TARGET_TARGETS :=
+IMAGE_TARGETS :=
+
 # silent mode requested?
 QUIET := $(if $(findstring s,$(filter-out --%,$(MAKEFLAGS))),-q)
 
@@ -741,7 +744,7 @@ host-finalize: $(PACKAGES) $(HOST_DIR) $(HOST_DIR_SYMLINK)
 staging-finalize: $(STAGING_DIR_SYMLINK)
 
 .PHONY: target-finalize
-target-finalize: $(PACKAGES) $(TARGET_DIR) host-finalize
+target-finalize: $(TARGET_TARGETS) $(TARGET_DIR) host-localedef host-finalize
 	@$(call MESSAGE,"Finalizing target directory")
 	$(call per-package-rsync,$(sort $(PACKAGES)),target,$(TARGET_DIR))
 	$(foreach hook,$(TARGET_FINALIZE_HOOKS),$($(hook))$(sep))
@@ -819,7 +822,7 @@ endif # merged /usr
 	touch $(TARGET_DIR)/usr
 
 .PHONY: target-post-image
-target-post-image: $(TARGETS_ROOTFS) target-finalize staging-finalize
+target-post-image: $(TARGETS_ROOTFS) $(IMAGE_TARGETS) target-finalize staging-finalize
 	@rm -f $(ROOTFS_COMMON_TAR)
 	$(Q)mkdir -p $(BINARIES_DIR)
 	@$(foreach s, $(call qstrip,$(BR2_ROOTFS_POST_IMAGE_SCRIPT)), \
