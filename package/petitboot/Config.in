@@ -11,9 +11,9 @@ config BR2_PACKAGE_PETITBOOT
 	# run-time dependency only
 	select BR2_PACKAGE_KEXEC_LITE if !BR2_PACKAGE_KEXEC
 	# run-time dependency only
-	select BR2_PACKAGE_POWERPC_UTILS if BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le
+	select BR2_PACKAGE_POWERPC_UTILS if (( BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le ) && ! BR2_PACKAGE_PS3_UTILS )
 	# run-time dependency only
-	select BR2_PACKAGE_NVME if BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le
+	select BR2_PACKAGE_NVME if (( BR2_powerpc || BR2_powerpc64 || BR2_powerpc64le ) && ! BR2_PACKAGE_PS3_UTILS )
 	help
 	  Petitboot is a small kexec-based bootloader
 
