@@ -7,7 +7,7 @@
 PETITBOOT_VERSION = v1.12
 PETITBOOT_SOURCE = petitboot-$(PETITBOOT_VERSION).tar.gz
 PETITBOOT_SITE ?= https://github.com/open-power/petitboot/releases/download/$(PETITBOOT_VERSION)
-PETITBOOT_DEPENDENCIES = ncurses udev host-bison host-flex lvm2
+PETITBOOT_DEPENDENCIES = elfutils ncurses udev host-bison host-flex lvm2
 PETITBOOT_LICENSE = GPLv2
 PETITBOOT_LICENSE_FILES = COPYING
 
