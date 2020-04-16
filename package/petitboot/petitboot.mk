@@ -42,30 +42,30 @@ define PETITBOOT_POST_INSTALL
 	$(INSTALL) -D -m 0755 $(@D)/utils/hooks/90-sort-dtb \
 		$(TARGET_DIR)/etc/petitboot/boot.d/
 
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/S14silence-console \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/S14silence-console \
 		$(TARGET_DIR)/etc/init.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/S15pb-discover \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/S15pb-discover \
 		$(TARGET_DIR)/etc/init.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/kexec-restart \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/kexec-restart \
 		$(TARGET_DIR)/usr/sbin/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/petitboot-console-ui.rules \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/petitboot-console-ui.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/removable-event-poll.rules \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/removable-event-poll.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/63-md-raid-arrays.rules \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/63-md-raid-arrays.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/65-md-incremental.rules \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/65-md-incremental.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL)/package/petitboot/66-add-sg-module.rules \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/66-add-sg-module.rules \
 		$(TARGET_DIR)/etc/udev/rules.d/
 
 	ln -sf /usr/sbin/pb-udhcpc \
 		$(TARGET_DIR)/usr/share/udhcpc/default.script.d/
 
 	mkdir -p $(TARGET_DIR)/home/petituser
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/shell_profile \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/shell_profile \
 		$(TARGET_DIR)/home/petituser/.profile
-	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_OP_BUILD_PATH)/package/petitboot/shell_config \
+	$(INSTALL) -D -m 0755 $(PETITBOOT_PKGDIR)/shell_config \
 		$(TARGET_DIR)/home/petituser/.shrc
 
 	$(MAKE) -C $(@D)/po DESTDIR=$(TARGET_DIR) install
