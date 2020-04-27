@@ -1,5 +1,4 @@
 BR2_powerpc=y
-BR2_POWERPC_SOFT_FLOAT=y
 BR2_DL_DIR="$(BASE_DIR)/../buildroot-extra/buildroot-dl"
 BR2_CCACHE=y
 BR2_CCACHE_DIR="$(BASE_DIR)/../buildroot-extra/buildroot-ccache"
